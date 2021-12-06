@@ -19,17 +19,30 @@ public class ShoeAdapter extends RecyclerView.Adapter {
 
     public class ShoeViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textViewShoe;
+        public TextView textViewShoeBrand;
+        public TextView textViewReleaseDate;
+        public TextView textViewColorWay;
+
 
         public ShoeViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewShoe = itemView.findViewById(R.id.textViewShoeName);
+            textViewShoeBrand = itemView.findViewById(R.id.textViewShoeName);
+            textViewColorWay = itemView.findViewById(R.id.textViewColorWay);
+            textViewReleaseDate = itemView.findViewById(R.id.textViewReleaseDate);
             itemView.setTag(this);
             itemView.setOnClickListener(onClickListener);
         }
 
         public TextView getShoeTextView() {
-            return textViewShoe;
+            return textViewShoeBrand;
+        }
+
+        public TextView getShoeColorWay() {
+            return textViewColorWay;
+        }
+
+        public TextView getShoeReleaseDate() {
+            return textViewReleaseDate;
         }
 
     }
@@ -50,7 +63,9 @@ public class ShoeAdapter extends RecyclerView.Adapter {
 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ShoeViewHolder svh = (ShoeViewHolder) holder;
-        svh.getShoeTextView().setText(shoeData.toString());//get(position).getColorway());
+        svh.getShoeTextView().setText(shoeData.get(position).getShoeBrand());
+        svh.getShoeColorWay().setText(shoeData.get(position).getColorway());
+        svh.getShoeReleaseDate().setText(shoeData.get(position).getReleaseDate());
     }
 
 

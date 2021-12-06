@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
             ds.open();
             shoes = ds.getShoes();
             ds.close();
-            //Shoe shoe = new Shoe();
-            //shoe.setShoeBrand("Jordan");
-            //shoes.add(shoe);
             Toast.makeText(this, "shoe size = " + shoes.size(), Toast.LENGTH_LONG).show();
             SharedPreferences sharedPref = getSharedPreferences("MyShoeListPreferences",
                     Context.MODE_PRIVATE);

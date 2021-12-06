@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.Currency;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -67,7 +70,7 @@ public class SecondActivity extends AppCompatActivity {
         });
 
         EditText colorwayEdit = findViewById(R.id.editColor);
-        brandEdit.addTextChangedListener(new TextWatcher() {
+        colorwayEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -80,12 +83,13 @@ public class SecondActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                currentShoe.setShoeBrand(colorwayEdit.getText().toString());
+                Toast.makeText(getBaseContext(), "color " + colorwayEdit.getText().toString(), Toast.LENGTH_LONG).show();
+                currentShoe.setColorway(colorwayEdit.getText().toString());
             }
         });
 
         EditText releaseDateEdit = findViewById(R.id.editRD);
-        brandEdit.addTextChangedListener(new TextWatcher() {
+        releaseDateEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -98,7 +102,7 @@ public class SecondActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                currentShoe.setShoeBrand(releaseDateEdit.getText().toString());
+                currentShoe.setReleaseDate(releaseDateEdit.getText().toString());
             }
         });
 
@@ -114,6 +118,7 @@ public class SecondActivity extends AppCompatActivity {
                 try {
                     ds.open();
                     if (currentShoe.getShoeID() == -1) {
+                        Log.d("SAVEBUTTON", currentShoe.toString());
                         wasSuccessful = ds.insertShoe(currentShoe);
                         if(wasSuccessful) {
                             int newId = ds.getLastShoeID();
